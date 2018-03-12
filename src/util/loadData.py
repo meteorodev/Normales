@@ -245,7 +245,7 @@ class LoadData():
         #lee las coordenadas de las estaciones
         coorEstaciones = pd.read_csv(filePath + "coor.csv", sep=";")
         for i in range(0,len(coorEstaciones.index)):
-            print(coorEstaciones.iat[i,0]," ",coorEstaciones.iat[i,1],coorEstaciones.iat[i,2])
+            print(i," <==> ",coorEstaciones.iat[i,0]," ",coorEstaciones.iat[i,1],coorEstaciones.iat[i,2])
             link = "https://power.larc.nasa.gov/cgi-bin/agro.cgi?email=&step=1&lat="+ str(coorEstaciones.iat[i, 1])\
                    +"&lon="+str(coorEstaciones.iat[i,2])+"&ms=1&ds=1&ys="+str(añoi)+"&me=12&de=31&ye="+\
                    str(añof)+"&p=T2M&p=T2MN&p=T2MX&submit=Submit"
@@ -262,7 +262,7 @@ class LoadData():
                 if escribir:
                     cont+=1
                     l=l.replace(" - ","NAN")
-                    print(cont,l,l[0:4], l[5:10] , l[11:18] ,l[19:25], l[27:33] )
+                    #print(cont,l,l[0:4], l[5:10] , l[11:18] ,l[19:25], l[27:33] )
                     data=[int(l[0:4]), int(l[5:10]), float(l[11:18]), float(l[19:25]), float(l[27:33])]
                     df.append(pd.DataFrame(data,index=ind).T)
                 if "-END HEADER-" in l:
@@ -283,7 +283,7 @@ filePath="/home/darwin/Documentos/Chrips/Precip/"
 filePath="/home/darwin/Documentos/Chrips/Tmax/"
 nasaPath="/home/darwin/Documentos/Chrips/NASA/"
 #########funcion para generar los datos#############
-#ld.getNasaTemps(nasaPath,filePath)
+ld.getNasaTemps(nasaPath,filePath)
 #########
 
 #temeperatura maxima
